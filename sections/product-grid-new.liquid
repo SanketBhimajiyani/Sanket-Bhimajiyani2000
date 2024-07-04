@@ -1,0 +1,49 @@
+<div class="section-title">
+<h2>{{ section.settings.section_title }}</h2>
+    </div>
+<div class="product-grid">
+    {% for block in section.blocks %}
+     {%- assign product = block.settings.select_product -%}
+     <div class="grid-box grid{{ forloop.index }}">
+        {% render 'card-product',
+        card_product: product
+         %}
+     <div class="icon">
+        <img src="https://cdn.shopify.com/s/files/1/0703/6718/3064/files/plus_icon_bec6aa42-f61e-4630-b9fa-ff9937f3039a.png?v=1720114154 | img_url=master" width="22" height="22" alt="plus_icon" />
+     </div>
+     </div>
+    {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Product Grid New",
+  "tag": "section",
+  "class": "product-grid-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Section Title",
+      "id": "section_title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "products",
+      "name": "Products",
+      "settings": [
+        {
+          "type": "product",
+          "label": "Select Product",
+          "id": "select_product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid New"
+    }
+  ]
+}
+{% endschema %}
