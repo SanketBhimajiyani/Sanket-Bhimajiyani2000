@@ -1,5 +1,17 @@
 {
   "sections": {
+    "banner_new_zhYA8R": {
+      "type": "banner-new",
+      "settings": {
+        "title": "The Gift Guide",
+        "description": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.<\/p>",
+        "mobile_description": "Discover Joy: Your Ultimate Holiday Gift Destination.",
+        "button_url": "#",
+        "button_text": "Shop Now",
+        "banner_announce": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+        "mobile_announce": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -26,6 +38,7 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image_overlay_opacity": 40,
         "image_height": "large",
@@ -121,6 +134,7 @@
     }
   },
   "order": [
+    "banner_new_zhYA8R",
     "image_banner",
     "product_grid_new_8V3LRP",
     "featured_collection"

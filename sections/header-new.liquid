@@ -1,0 +1,47 @@
+<div class="header-inner">
+  <div class="container-fluid">
+    <div class="header-info">
+      <div class="logo">
+    {% comment %} <img src="{{ section.settings.logo | img_url='large' }}" width="auto" height="auto" alt="{{ section.settings.logo }}"> {% endcomment %}
+    </div>
+      <div class="header-text"></div>
+      <div class="header-btn"></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header New",
+  "tag": "section",
+  "class": "header-wrapper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Logo",
+      "id": "logo"
+    },
+    {
+      "type": "text",
+      "label": "Text",
+      "id": "text"
+    },
+    {
+      "type": "url",
+      "label": "Button URL",
+      "id": "button_url"
+    },
+    {
+      "type": "text",
+      "label": "Button Text",
+      "id": "button_text"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Header New"
+    }
+  ]
+}
+{% endschema %}
