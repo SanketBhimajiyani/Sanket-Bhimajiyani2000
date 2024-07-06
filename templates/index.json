@@ -90,6 +90,12 @@
           "settings": {
             "select_product": "dark-denim-top"
           }
+        },
+        "products_ciQGGJ": {
+          "type": "products",
+          "settings": {
+            "select_product": ""
+          }
         }
       },
       "block_order": [
@@ -98,7 +104,8 @@
         "products_tYEVDP",
         "products_qj4V4Q",
         "products_Q76ndF",
-        "products_4JLrQe"
+        "products_4JLrQe",
+        "products_ciQGGJ"
       ],
       "settings": {
         "section_title": "Tisso vison in the wild"
