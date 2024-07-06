@@ -286,13 +286,16 @@
 
   /* header css end */
 
-  #popup-modal {
+  .popup-modal {
     display: none;
     padding: 12px 20px 25px;
     box-shadow: 0px 2px 4px 0px #00000033;
     background: white;
+    max-width: 311px;
+    font-family: "Jost", sans-serif;
+    color: #000;
   }
-  .popup.open {
+  .popup-modal.open {
     display: block !important;
     position: absolute;
     top: 50%;
@@ -304,6 +307,76 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  } 
+  .product-grid .popup-modal .close-icon {
+    cursor: pointer;
+    text-align: right;
+  }
+  .popup-modal .product-info {
+    margin-top: 6px;
+    display: flex;
+    gap: 8px;
+  }
+  .popup-modal .product-info .product-img img {
+    object-fit: cover;
+  }
+  .popup-modal .product-info .pop-title h4 {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 19.2px;
+      text-align: left;
+      color: #000;
+      font-family: "Jost", sans-serif;
+  }
+  .popup-modal .product-info .pop-price {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    font-family: "Lustria", serif;
+    margin-top: 22px;
+    color: #000;
+  }
+  .popup-modal .product-info .pop-text {
+    margin-top: 13px;
+    color: #000;
+  }
+  .popup-modal .product-info .pop-text p {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 13.2px;
+    letter-spacing: -0.01em;
+    color: #000;
+  }
+  .popup-modal .add-to-cart {
+    margin-top: 51px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+  .popup-modal .color-variant,.popup-modal .size-box {
+    margin-top: 10px;
+  }
+  .popup-modal .size-box .size-dropdown {
+    padding: 10px;
+    width: 100%;
+    margin-top: 6px;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+  }
+  .popup-modal .varaint-box {
+    display: flex;
+    border: 1px solid #000;
+  }
+  .popup-modal .varaint-box span {
+    width: 50%;
+    padding: 10px 15px;
+  }
+  .popup-modal .add-to-cart .black-btn {
+    display: flex;
+    align-items: center;
   }
 
   /* responsive css start */
