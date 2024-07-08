@@ -10,6 +10,10 @@
     margin: 0;
     margin-bottom: 30px;
 }
+body.popup-open {
+  background: rgba(0, 0, 0, 0.2);
+  /* overflow-y: hidden; */
+}
 .btn {
     font-size: 16px;
     font-weight: 400;
@@ -17,7 +21,6 @@
     transition: all 500ms;
     text-decoration: none;
     text-transform: uppercase;
-
 }
 .black-btn {
   padding: 14px 25px 14px 55px;
@@ -70,6 +73,16 @@
   .product-grid-wrapper .product-grid .grid-box {
     position: relative;
   }
+  .product-grid-wrapper .product-grid .grid-box a {
+    position: relative;
+    padding-top: 102.54%;
+    display: block;
+  }
+  .product-grid-wrapper .product-grid .grid-box a img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 
   .product-grid-wrapper .product-grid .grid-box .icon {
     display: flex;
@@ -78,25 +91,27 @@
     z-index: 3;
     cursor: pointer;
     transform: translate(-50%,-50%);
+    width: 22px;
+    height: 22px;
   }
 
   .product-grid-wrapper .product-grid .grid-box.grid1 .icon {
     right: 34%;
-    top: 48%;
+    top: 56%;
   }
 
   .product-grid-wrapper .product-grid .grid-box.grid2 .icon {
     right: 12%;
-    top: 44%;
+    top: 54%;
   }
 
   .product-grid-wrapper .product-grid .grid-box.grid3 .icon {
-    right: 34%;
-    top: 80px;
+    right: 32%;
+    top: 85px;
   }
 
   .product-grid-wrapper .product-grid .grid-box.grid4 .icon {
-    right: 109px;
+    right: 95px;
     top: 71px;
   }
 
@@ -107,7 +122,7 @@
 
   .product-grid-wrapper .product-grid .grid-box.grid6 .icon {
     right: 91.5px;
-    top: 32%;
+    top: 40%;
   }
   /* product grid css end */
 
@@ -366,17 +381,41 @@
     box-shadow: none;
     cursor: pointer;
   }
-  .popup-modal .varaint-box {
+  .popup-modal .variant-box {
     display: flex;
     border: 1px solid #000;
   }
-  .popup-modal .varaint-box span {
+  .popup-modal .variant-box span {
     width: 50%;
     padding: 10px 15px;
+    position: relative;
+  }
+  .popup-modal .variant-box span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 6px;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+  }
+  .popup-modal .variant-box span.color-option.white::before {
+    background-color: #fff;
+  }
+  .popup-modal .variant-box span.color-option.black::before {
+    background-color: #000;
+  }
+  .popup-modal .add-to-cart form {
+    width: 100%;
   }
   .popup-modal .add-to-cart .black-btn {
     display: flex;
     align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    justify-content: space-between;
+    width: 100%;
   }
 
   /* responsive css start */
@@ -483,6 +522,42 @@
     }
     .banner-announcement-bar p {
       font-size: 14px;
+    }
+    .popup-modal {
+      width: 90%;
+      max-width: 90%;
+    }
+  }
+
+  @media (max-width:575px) {
+    .product-grid-wrapper .product-grid .grid-box.grid1 .icon {
+      right: 52px;
+      top: 18px;
+    }
+  
+    .product-grid-wrapper .product-grid .grid-box.grid2 .icon {
+      right: 18px;
+      top: 52px;
+    }
+  
+    .product-grid-wrapper .product-grid .grid-box.grid3 .icon {
+      right: 18px;
+      top: 52px;
+    }
+  
+    .product-grid-wrapper .product-grid .grid-box.grid4 .icon {
+      right: 18px;
+      top: 52px;
+    }
+  
+    .product-grid-wrapper .product-grid .grid-box.grid5 .icon {
+      right: 18px;
+      top: 52px;
+    }
+  
+    .product-grid-wrapper .product-grid .grid-box.grid6 .icon {
+      right: 18px;
+      top: 68px;
     }
   }
   

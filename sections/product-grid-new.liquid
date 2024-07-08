@@ -5,97 +5,94 @@
   {% for block in section.blocks %}
   {%- assign product = block.settings.select_product -%}
   <div class="grid-boxes">
-      <div class="grid-box grid{{ forloop.index }}">
-          {% comment %} {% render 'card-product', card_product: product %} {% endcomment %}
-          <a href="#popup-modal{{ forloop.index }}" 
-             data-product-id="{{ product.id }}" 
-             data-product-title="{{ product.title }}" 
-             data-product-image="{{ product.featured_image | img_url: 'large' }}" 
-             data-product-description="{{ product.description }}">
-              {% if product.featured_image %}
-              <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
-              <div id="icon{{ forloop.index }}" class="icon" data-target="popup-modal{{ forloop.index }}">
-                  <img src="https://cdn.shopify.com/s/files/1/0703/6718/3064/files/plus_icon_bec6aa42-f61e-4630-b9fa-ff9937f3039a.png?v=1720114154 | img_url=master" width="22" height="22" alt="plus_icon" />
-              </div>
-              {% endif %}
-          </a>
+    <div class="grid-box grid{{ forloop.index }}">
+      {% if product.featured_image != blank %}
+      <a href="#popup-modal{{ forloop.index }}" data-product-id="{{ product.id }}" data-product-title="{{ product.title }}" data-product-image="{{ product.featured_image | img_url: 'large' }}" data-product-description="{{ product.description }}">
+        <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+        <div id="icon{{ forloop.index }}" class="icon" data-target="popup-modal{{ forloop.index }}">
+          <img src="https://cdn.shopify.com/s/files/1/0703/6718/3064/files/plus_icon_bec6aa42-f61e-4630-b9fa-ff9937f3039a.png?v=1720114154 | img_url=master" width="22" height="22" alt="plus_icon" />
+        </div>
+      </a>
+      {% endif %}
+    </div>
+    <div id="popup-modal{{ forloop.index }}" class="popup-modal">
+      <div class="close-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.03784 4.94354L13.5231 13.4288" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+          <path d="M5.03784 13.4285L13.5231 4.94325" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+        </svg>
       </div>
-      {% comment %} popup {% endcomment %}
-      <div id="popup-modal{{ forloop.index }}" class="popup-modal">
-          <div class="close-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.03784 4.94354L13.5231 13.4288" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M5.03784 13.4285L13.5231 4.94325" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-              </svg>
+      <div class="product-info">
+        <div class="product-img">
+          <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}" width="120" height="140">
+        </div>
+        <div class="product-content">
+          <div class="pop-title">
+            <h4>{{ product.title }}</h4>
           </div>
-          <div class="product-info">
-              <div class="product-img">
-                  <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}" width="120" height="140">
-              </div>
-              <div class="product-content">
-                  <div class="pop-title">
-                      <h4>{{ product.title }}</h4>
-                  </div>
-                  <div class="pop-price">
-                  {{ product.price }}€
-                  </div>
-                  <div class="pop-text">
-                      <p>{{ product.description }}</p>
-                  </div>
-              </div>
+          <div class="pop-price">
+            {{ product.price }}€
           </div>
-          <div class="color-variant">
-              <p>Color</p>
-              <div class="varaint-box">
-                {% assign color_options = '' %}
-                {% for variant in product.variants %}
-                    {% if variant.available %}
-                        {% unless color_options contains variant.option2 %}
-                            {% assign color_options = color_options | append: variant.option2 | append: ',' %}
-                            <span class="{{ variant.option2 }}">{{ variant.option2 }}</span>
-                        {% endunless %}
-                    {% endif %}
-                {% endfor %}
-              </div>
+          <div class="pop-text">
+            <p>{{ product.description }}</p>
           </div>
-          <div class="size-box">
-              <p>Size</p>
-              <select class="size-dropdown">
-                {% assign size_options = '' %}
-                {% for variant in product.variants %}
-                    {% if variant.available %}
-                        {% unless size_options contains variant.option1 %}
-                            {% assign size_options = size_options | append: variant.option1 | append: ',' %}
-                        {% endunless %}
-                    {% endif %}
-                {% endfor %}
-                {% assign size_options = size_options | split: ',' | uniq %}
-                {% for size in size_options %}
-                    {% unless size == '' %}
-                        <option value="{{ size }}">{{ size }}</option>
+        </div>
+      </div>
+      <div class="color-variant">
+        <p>Color</p>
+        <div class="variant-box">
+            {% assign color_options = '' %}
+            {% for variant in product.variants %}
+                {% if variant.available %}
+                    {% unless color_options contains variant.option2 %}
+                        {% assign color_options = color_options | append: variant.option2 | append: ',' %}
+                        <span class="color-option {{ variant.option2 | downcase }}">{{ variant.option2 }}</span>
                     {% endunless %}
-                {% endfor %}
-            </select>
-          </div>
-          <div class="add-to-cart">
-              <a class="btn black-btn">
-                <form action="/cart/add" method="post" enctype="multipart/form-data" id="add-to-cart-form{{ forloop.index }}">
-                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                  <button type="submit" class="btn black-btn">{{ section.settings.button_text }}</button>
-              </form>
-                  <svg width="28" height="13" viewBox="0 0 28 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1.11108 5.74402L0.361084 5.74402L0.361084 7.24402L1.11108 7.24402L1.11108 5.74402ZM27.1487 7.02435C27.4416 6.73146 27.4416 6.25658 27.1487 5.96369L22.3757 1.19072C22.0828 0.897826 21.6079 0.897826 21.315 1.19072C21.0221 1.48361 21.0221 1.95849 21.315 2.25138L25.5577 6.49402L21.315 10.7367C21.0221 11.0296 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02435ZM1.11108 7.24402L26.6183 7.24402L26.6183 5.74402L1.11108 5.74402L1.11108 7.24402Z" fill="white"/>
-                  </svg>
-              </a>
-          </div>
-      </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+    <div class="size-box">
+        <p>Size</p>
+        <select class="size-dropdown">
+            {% assign size_options = '' %}
+            {% for variant in product.variants %}
+                {% if variant.available %}
+                    {% unless size_options contains variant.option1 %}
+                        {% assign size_options = size_options | append: variant.option1 | append: ',' %}
+                    {% endunless %}
+                {% endif %}
+            {% endfor %}
+            {% assign size_options = size_options | split: ',' | uniq %}
+            {% for size in size_options %}
+                {% unless size == '' %}
+                    <option value="{{ size }}">{{ size }}</option>
+                {% endunless %}
+            {% endfor %}
+        </select>
+    </div>
+    <div class="add-to-cart">
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="add-to-cart-form{{ forloop.index }}">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <button type="submit" class="btn black-btn">ADD To CART
+                <svg width="28" height="13" viewBox="0 0 28 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.11108 5.74402L0.361084 5.74402L0.361084 7.24402L1.11108 7.24402L1.11108 5.74402ZM27.1487 7.02435C27.4416 6.73146 27.4416 6.25658 27.1487 5.96369L22.3757 1.19072C22.0828 0.897826 21.6079 0.897826 21.315 1.19072C21.0221 1.48361 21.0221 1.95849 21.315 2.25138L25.5577 6.49402L21.315 10.7367C21.0221 11.0296 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02435ZM1.11108 7.24402L26.6183 7.24402L26.6183 5.74402L1.11108 5.74402L1.11108 7.24402Z" fill="white"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+    
+    </div>
   </div>
   {% endfor %}
 </div>
 
 <script>
   var productVariants = {{ product.variants | json }};
-  </script>
+</script>
+
   
 
 
