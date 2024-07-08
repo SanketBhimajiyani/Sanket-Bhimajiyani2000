@@ -1,0 +1,129 @@
+<div class="home_banner_inner">
+    <div class="container_fluid">
+        <div class="banner_img">
+            {% if section.settings.desktop_image != blank %}
+                <div class="desktop_img">
+                  <img src="{{ section.settings.desktop_image | img_url: 'large' }}" width="1440" height="780" alt="{{ section.settings.desktop_image }}">
+                </div>
+              {% else %}
+              <img class="desktop_img" src="https://cdn.shopify.com/s/files/1/0703/6718/3064/files/Group_1000007949_1.jpg?v=1720201963" width="1440" height="780">
+              {% endif %}              
+        {% if section.settings.mobile_image != blank %}
+        <div class="mobile_img">
+            <img src="{{ section.settings.mobile_image | img_url: 'large' }}" width="686" height="264" alt="{{ section.settings.mobile_image }}">
+            </div>
+            {% else %}
+            <img class="mobile_img" src="https://cdn.shopify.com/s/files/1/0703/6718/3064/files/Frame.jpg?v=1720203342" width="686" height="264">
+        {% endif %}
+        </div>
+        <div class="banner-content">
+            <div class="banner-info">
+                {% if section.settings.title != blank %}
+                <div class="sec_title">
+                <h1>{{ section.settings.title }}</h1>
+                </div>
+            {% endif %}
+            {%  if section.settings.description != blank %}
+                <div class="description">
+                <p>{{ section.settings.description }}</p>
+                </div>
+            {% endif %}
+            {% if section.settings.mobile_description != blank %}
+            <div class="mobile_description">
+            <p>{{ section.settings.mobile_description }}</p>
+            </div>
+        {% endif %}
+            </div>
+        {% if section.settings.button_text != blank %}
+            <div class="banner-btn">
+            <a class="btn black-btn" href="{{ section.settings.button_url }}">
+            {{ section.settings.button_text }}
+            <svg width="28" height="13" viewBox="0 0 28 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.11108 5.74402L0.361084 5.74402L0.361084 7.24402L1.11108 7.24402L1.11108 5.74402ZM27.1487 7.02435C27.4416 6.73146 27.4416 6.25658 27.1487 5.96369L22.3757 1.19072C22.0828 0.897826 21.6079 0.897826 21.315 1.19072C21.0221 1.48361 21.0221 1.95849 21.315 2.25138L25.5577 6.49402L21.315 10.7367C21.0221 11.0296 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02435ZM1.11108 7.24402L26.6183 7.24402L26.6183 5.74402L1.11108 5.74402L1.11108 7.24402Z" fill="white"/>
+              </svg>
+              </a>
+            </div>
+        {%  endif %}
+        </div>
+    </div>
+</div>
+<div class="banner-announcement-bar">
+    <div class="desktop-announce">
+        <p>{{ section.settings.banner_announce }}</p>
+    </div>
+    <div class="mobile-announce">
+        <p>{{ section.settings.mobile_announce }}</p>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner New",
+  "tag": "section",
+  "class": "hero_banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Desktop Image",
+      "id": "desktop_image"
+    },
+    {
+      "type": "image_picker",
+      "label": "Mobile Image",
+      "id": "mobile_image"
+    },
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title",
+      "default": "Title"
+    },
+    {
+      "type": "text",
+      "label": "Desktop Description",
+      "id": "description",
+      "default": "Description"
+    },
+    {
+        "type": "text",
+        "label": "Mobile Description",
+        "id": "mobile_description",
+        "default": "Description"
+      },
+    {
+      "type": "url",
+      "label": "Button URL",
+      "id": "button_url"
+    },
+    {
+      "type": "text",
+      "label": "Button Text",
+      "id": "button_text"
+    },
+    {
+        "type": "text",
+        "label": "Desktop Banner Announcement",
+        "id": "banner_announce",
+        "default": "Description"
+      },
+      {
+        "type": "text",
+        "label": "Mobile banner Announcement",
+        "id": "mobile_announce",
+        "default": "Description"
+      },
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Hero Banner New"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
